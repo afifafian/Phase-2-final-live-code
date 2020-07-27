@@ -10,14 +10,18 @@ class UserController {
             email: req.body.email,
             password: req.body.password
         }
-        User.create(newUser)
-        .then(function(data){
-            return res.status(201).json(data)
-        })
-        .catch(function(err){
-            console.log(err)
-            return res.status(500).json({message: 'Internal Server Error'})
-        })
+        if(!newUser.email || !newUser.password) {
+            return res.status(400).json({message: 'All field is required!'})
+        } else {
+            User.create(newUser)
+            .then(function(data){
+                return res.status(201).json(data)
+            })
+            .catch(function(err){
+                console.log(err)
+                return res.status(500).json({message: 'Internal Server Error'})
+            })
+        }
     }
     static login (req, res) {
         User.findOne({

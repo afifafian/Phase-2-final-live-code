@@ -1,12 +1,24 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import MainPage from '../views/MainPage.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/main',
+    name: 'MainPage',
+    component: MainPage,
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
   },
@@ -25,5 +37,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if(to.name !== 'Login' && !localStorage.token) next({name: 'Login'})
+  else next()
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.name == 'Login' && localStorage.token) next({name: 'MainPage'})
+  else next()
+})
 
 export default router;
