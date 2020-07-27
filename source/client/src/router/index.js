@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import MainPage from '../views/MainPage.vue';
+import Favorites from '../views/Favorites.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/main',
     name: 'MainPage',
     component: MainPage,
+  },
+  {
+    path: '/favourites',
+    name: 'Favorites',
+    component: Favorites,
   },
   {
     path: '/home',

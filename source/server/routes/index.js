@@ -8,6 +8,6 @@ const UserController = require('../controllers/UserController')
 routes.post('/register', UserController.register)
 routes.post('/login', UserController.login)
 routes.use('/animals', animalRouter)
-routes.use('/favorites', favoriteRouter)
+routes.use('/favourites', favoriteRouter)
 
 module.exports = routes
