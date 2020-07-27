@@ -11,15 +11,16 @@ class FavoritesController {
         }
         if(!newFavorite.AnimalId) {
             return res.status(400).json({message: 'All field is required!'})
+        } else {
+            Favorite.create(newFavorite)
+            .then(function(data){
+                return res.status(201).json(data)
+            })
+            .catch(function(err){
+                console.log(err)
+                return res.status(500).json({message: 'Internal Server Error'})
+            })
         }
-        Favorite.create(newFavorite)
-        .then(function(data){
-            return res.status(201).json(data)
-        })
-        .catch(function(err){
-            console.log(err)
-            return res.status(500).json({message: 'Internal Server Error'})
-        })
     }
     static showFavorites (req, res) {
         Favorite.findAll({
@@ -27,6 +28,20 @@ class FavoritesController {
         })
         .then(function(data){
             console.log(data)
+            let result;
+            data.forEach(element => {
+                result = {
+                    id: element.id,
+                    userId: element.UserId,
+                    animalId: element.AnimalId,
+                    animal: {
+                        id: element.Animal.id,
+                        name: element.Animal.name,
+                        imageUrl: element.Animal.imageUrl,
+                        description: element.Animal.description
+                    }
+                }
+            });
             return res.status(200).json(data)
         })
         .catch(function(err){

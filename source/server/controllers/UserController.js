@@ -15,7 +15,10 @@ class UserController {
         } else {
             User.create(newUser)
             .then(function(data){
-                return res.status(201).json(data)
+                return res.status(201).json({
+                    id: data.id,
+                    email: data.email
+                })
             })
             .catch(function(err){
                 console.log(err)
@@ -41,7 +44,11 @@ class UserController {
                     id: data.id,
                     email: data.email
                 }, "jwtSECRET")
-                return res.status(200).json({access_token: token})
+                return res.status(200).json({
+                    id: data.id,
+                    email: data.email,
+                    token: token
+                })
             }
         })
         .catch(function(err){

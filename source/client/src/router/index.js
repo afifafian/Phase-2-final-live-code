@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import MainPage from '../views/MainPage.vue';
 import Favorites from '../views/Favorites.vue';
+import Animals from '../components/Animals.vue';
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/main',
     name: 'MainPage',
     component: MainPage,
+  },
+  {
+    path: '/animals',
+    name: 'Animals',
+    component: Animals,
   },
   {
     path: '/favourites',

@@ -33,7 +33,7 @@ export default new Vuex.Store({
       })
       .then((results) => {
         console.log(results)
-        localStorage.setItem('token', results.data.access_token)
+        localStorage.setItem('token', results.data.token)
         router.push({name: 'MainPage'})
       })
       .catch((err) => {
@@ -49,7 +49,7 @@ export default new Vuex.Store({
         },
       })
       .then((results) => {
-        console.log(results)
+        console.log(results.data)
         context.commit('SET_ANIMALS', results.data)
       })
       .catch((err) => {

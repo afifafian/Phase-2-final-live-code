@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="mt-5">
       <div v-for="(animals, idx) in $store.state.animals" :key="idx" class="card" style="width: 18rem;">
           <div  class="card-body">
-            <img :src="animals.imageUrl" class="w3-round" style="width:200px;height:200px;">
-              <h5 class="card-title">{{animals.name}}</h5>
+            <img :src="animals.imageUrl" class="w3-round" style="width:250px;height:250px;">
+              <h5 class="card-title mt-3">{{animals.name}}</h5>
               <br>
               <p class="card-text">{{animals.description}}</p>
-              <button @click="favorites(animals.id)" class="card-link">Add to Favorites</button>
+              <button class="btn btn-primary" @click="favorites(animals.id)">Add to Favorites</button>
             </div>
         </div>
   </div>
@@ -30,4 +30,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.card-title{
+  font-weight: bolder;
+}
+</style>
